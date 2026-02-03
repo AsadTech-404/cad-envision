@@ -1,0 +1,29 @@
+version: "4.58.0"
+
+services:
+  server:
+    build: ./server
+    container_name: autocad_server
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/app
+      
+  client:
+    build: ./client
+    container_name: autocad_client
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./client/.env.local
+    volumes:
+      - ./client:/app
+      - /app/node_modules   
+      - /app/.next           
+    depends_on:
+      - server
+
+volumes:
+  mongo_data:
