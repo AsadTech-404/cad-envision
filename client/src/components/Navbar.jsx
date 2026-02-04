@@ -70,7 +70,7 @@ export default function Navbar() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleSearch}
+              onClick={handleSearch}
               placeholder="Search drawings..."
               className="bg-blueprint-700 border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:border-blueprint-500 transition w-48 lg:w-64 text-white"
             />
