@@ -19,7 +19,7 @@ export default function Home() {
     const fetchHomeData = async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:8000/api/drawings/all");
+        const res = await fetch("https://cad-envision-server.vercel.app/api/drawings/all");
         
         if (!res.ok) throw new Error("Failed to fetch data");
         
