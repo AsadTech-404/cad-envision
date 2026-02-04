@@ -65,7 +65,7 @@ export default function Navbar() {
         {/* Right Side: Search, Cart & Mobile Toggle */}
         <div className="flex items-center gap-5 relative">
           {/* Desktop Search */}
-          <form onSubmit={handleSearch} className="relative sm:hidden">
+          <form onSubmit={handleSearch} className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="text"
