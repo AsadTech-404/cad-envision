@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import DrawingCard from "@/components/DrawingCard";
 import { Loader2, X, Search as SearchIcon } from "lucide-react";
 import QuickViewModal from "@/components/QuickViewModal";
 
-export default function DrawingsPage() {
+function DrawingsList() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -141,5 +141,17 @@ export default function DrawingsPage() {
         drawing={selectedDrawing}
       />
     </div>
+  );
+}
+
+export default function DrawingsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-blueprint-900 flex justify-center items-center">
+        <Loader2 className="animate-spin text-blueprint-500" />
+      </div>
+    }>
+      <DrawingsList />
+    </Suspense>
   );
 }
