@@ -14,7 +14,7 @@ export default function BlogDetail() {
     const fetchBlog = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:8000/api/blogs/single/${id}`, {
+        const res = await fetch(`https://cad-envision-server.vercel.app/api/blogs/single/${id}`, {
           cache: 'no-store',
         });
         if (!res.ok) throw new Error("Article not found");
