@@ -66,7 +66,9 @@ export default function Navbar() {
         <div className="flex items-center gap-5 relative">
           {/* Desktop Search */}
           <form onSubmit={handleSearch} className="relative hidden sm:block">
+            <button type="submit">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            </button>
             <input
               type="text"
               value={searchQuery}
