@@ -16,7 +16,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
 
       async authorize(credentials) {
-        const res = await fetch("http://localhost:8000/api/auth/login", {
+        const res = await fetch("https://cad-envision-server.vercel.app/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(credentials),
