@@ -17,7 +17,7 @@ export default function ProductPage  ()  {
       try {
         setLoading(true);
         // Fetch specific drawing by ID
-        const res = await fetch(`http://localhost:8000/api/drawings/single/${id}`, {
+        const res = await fetch(`https://cad-envision-server.vercel.app/api/drawings/single/${id}`, {
           cache: "no-store",
         });
         if (!res.ok) throw new Error("Product not found");

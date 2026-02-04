@@ -12,7 +12,7 @@ export default function TutorialsAdmin() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/blogs/all");
+        const res = await fetch("https://cad-envision-server.vercel.app/api/blogs/all");
         if (!res.ok) throw new Error("Server error");
         const data = await res.json();
         setBlogs(data.blogs);

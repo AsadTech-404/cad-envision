@@ -33,7 +33,7 @@ export default function CategoriesPage() {
   useEffect(() => {
     const fetchAndProcessCategories = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/drawings/all");
+        const res = await fetch("https://cad-envision-server.vercel.app/api/drawings/all");
         const data = await res.json();
         const allDrawings = data.drawings;
 

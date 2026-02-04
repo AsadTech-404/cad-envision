@@ -31,7 +31,7 @@ export default function AddDrawingPage() {
     formData.append("price", price);
     formData.append("image", image);
 
-    const response = await fetch("http://localhost:8000/api/drawings/add", {
+    const response = await fetch("https://cad-envision-server.vercel.app/api/drawings/add", {
       method: "POST",
       body: formData,
     });

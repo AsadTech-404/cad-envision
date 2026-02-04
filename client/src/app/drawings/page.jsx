@@ -25,7 +25,7 @@ export default function DrawingsPage() {
       setLoading(true);
       try {
         // Construct the URL using your backend's query logic
-        let url = new URL("http://localhost:8000/api/drawings/all"); // or your specific filter endpoint
+        let url = new URL("https://cad-envision-server.vercel.app/api/drawings/all"); // or your specific filter endpoint
         
         if (searchNameParam) url.searchParams.append("search", searchNameParam);
         if (categoryParam) url.searchParams.append("category", categoryParam);

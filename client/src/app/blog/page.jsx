@@ -35,7 +35,7 @@ export default function BlogPage() {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        let url = `http://localhost:8000/api/blogs/all?page=${currentPage}&limit=${limit}&search=${searchQuery}`;
+        let url = `https://cad-envision-server.vercel.app/api/blogs/all?page=${currentPage}&limit=${limit}&search=${searchQuery}`;
         if (activeCategory !== "All") {
           url += `&category=${activeCategory}`;
         }

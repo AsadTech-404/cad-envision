@@ -12,7 +12,7 @@ export default function ManageCAD() {
     const fetchDrawings = async () => {
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:8000/api/drawings/all");
+        const res = await fetch("https://cad-envision-server.vercel.app/api/drawings/all");
         if (!res.ok) throw new Error("Server error");
         const data = await res.json();
         setDrawings(data.drawings);
