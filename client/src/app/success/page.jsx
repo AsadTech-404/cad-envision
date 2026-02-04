@@ -24,7 +24,7 @@ export default function SuccessPage() {
       return;
     }
 
-    fetch(`http://localhost:8000/api/orders/${orderId}`)
+    fetch(`https://cad-envision-server.vercel.app/api/orders/${orderId}`)
       .then((res) => {
         if (!res.ok) throw new Error("Invalid order");
         return res.json();
