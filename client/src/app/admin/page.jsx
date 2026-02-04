@@ -18,7 +18,7 @@ export default function AdminPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/count/total');
+        const res = await fetch('https://cad-envision-server.vercel.app/api/count/total');
         if (!res.ok) throw new Error('Failed to fetch stats');
         const data = await res.json();
         setStats(data);
