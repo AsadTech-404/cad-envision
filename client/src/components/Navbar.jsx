@@ -18,7 +18,8 @@ export default function Navbar() {
 
   // handle search execution
   const handleSearch = (e) => {
-    if (e.key === "Enter" && searchQuery.trim()) {
+    e.preventDefault();
+    if (searchQuery.trim()) {
       // Navigate to the drawings page with the search query in the URL
       router.push(`/drawings?search=${encodeURIComponent(searchQuery.trim())}`);
       
@@ -64,8 +65,8 @@ export default function Navbar() {
         {/* Right Side: Search, Cart & Mobile Toggle */}
         <div className="flex items-center gap-5 relative">
           {/* Desktop Search */}
-          <div className="relative hidden sm:block">
-            <Search onClick={handleSearch} className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+          <form onSubmit={handleSearch} className="relative sm:hidden">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="text"
               value={searchQuery}
@@ -73,7 +74,7 @@ export default function Navbar() {
               placeholder="Search drawings..."
               className="bg-blueprint-700 border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:border-blueprint-500 transition w-48 lg:w-64 text-white"
             />
-          </div>
+          </form>
 
           <Link href="/cart" className="relative group p-2">
             <ShoppingCart className="w-5 h-5 text-gray-400 hover:text-white transition" />
