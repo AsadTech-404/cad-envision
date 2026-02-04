@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blueprint-900: #0a0f16;
+  --color-blueprint-700: #161e2c;
+  --color-blueprint-500: #005fb8;
+  --color-blueprint-300: #4a90e2;
+  --color-blueprint-100: #f8f9fa;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --font-mono: "Roboto Mono", monospace;
+}
+
+@layer base {
+  /* This prevents the page from 'jumping' when the scrollbar disappears */
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-blueprint-900 text-white antialiased;
+    /* Force hide scrollbar globally if you never want it seen */
+    overflow-x: hidden;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
