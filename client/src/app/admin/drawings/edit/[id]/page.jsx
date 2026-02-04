@@ -26,7 +26,7 @@ export default function page() {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:8000/api/drawings/single/${id}`,
+          `https://cad-envision-server.vercel.app/api/drawings/single/${id}`,
         );
         if (!res.ok) throw new Error("Server error");
         const data = await res.json();
