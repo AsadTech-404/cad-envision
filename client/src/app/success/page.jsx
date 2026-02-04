@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -9,9 +9,11 @@ import {
   ArrowRight,
   Mail,
   FileCheck,
+  Loader2,
 } from "lucide-react";
 
-export default function SuccessPage() {
+// 1. Move the main logic to a sub-component
+function SuccessContent() {
   const params = useSearchParams();
   const router = useRouter();
   const orderId = params.get("orderId");
@@ -31,9 +33,16 @@ export default function SuccessPage() {
       })
       .then((data) => setOrder(data.data || data.order))
       .catch(() => router.replace("/"));
-  }, [orderId]);
+  }, [orderId, router]);
 
-  if (!order) return null; // loader
+  if (!order) {
+    return (
+      <div className="min-h-screen bg-blueprint-900 flex flex-col items-center justify-center">
+        <Loader2 className="animate-spin text-blueprint-500 mb-4" size={48} />
+        <p className="text-white font-mono uppercase text-xs">Verifying Order...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-blueprint-900 pt-24 md:pt-32 pb-20 px-4 md:px-6 flex flex-col items-center">
@@ -47,7 +56,7 @@ export default function SuccessPage() {
             Payment <span className="text-emerald-500">Verified</span>
           </h1>
           <p className="text-gray-400 font-mono text-sm uppercase tracking-widest">
-            Order Number: `CAD-${Date.now()}`
+            Order Number: {orderId ? `CAD-${orderId.slice(-6).toUpperCase()}` : "N/A"}
           </p>
         </div>
 
@@ -55,22 +64,21 @@ export default function SuccessPage() {
         <div className="bg-blueprint-700 border border-white/10 rounded-3xl overflow-hidden mb-8">
           <div className="p-6 border-b border-white/5 bg-white/5 flex items-center justify-between">
             <h2 className="text-white font-bold uppercase text-sm tracking-wider flex items-center gap-2">
-              <FileCheck size={18} className="text-blueprint-300" /> Ready for
-              Download
+              <FileCheck size={18} className="text-blueprint-300" /> Ready for Download
             </h2>
           </div>
 
           <div className="divide-y divide-white/5">
             {order.items.map((item) => (
-              <div key={item._id} className="p-6 flex justify-between">
+              <div key={item._id} className="p-6 flex justify-between items-center">
                 <div>
-                  <h3 className="text-white font-bold">{item.drawing.title}</h3>
+                  <h3 className="text-white font-bold">{item.drawing?.title || "Project File"}</h3>
                   <p className="text-gray-500 text-xs font-mono uppercase">
                     Qty: {item.qty} • PKR {item.price}
                   </p>
                 </div>
 
-                <button className="px-6 py-3 bg-blueprint-500 text-white rounded-xl">
+                <button className="flex items-center gap-2 px-6 py-3 bg-blueprint-500 text-white rounded-xl hover:bg-blueprint-400 transition">
                   <Download size={16} /> Download
                 </button>
               </div>
@@ -85,20 +93,16 @@ export default function SuccessPage() {
             <div>
               <h4 className="text-white font-bold text-sm mb-1">Email Sent</h4>
               <p className="text-gray-400 text-xs leading-relaxed">
-                We've sent a backup download link and your tax invoice to your
-                registered email.
+                We've sent a backup download link and your tax invoice to your registered email.
               </p>
             </div>
           </div>
           <div className="p-6 bg-blueprint-700/30 border border-white/5 rounded-2xl flex gap-4">
             <CheckCircle2 size={24} className="text-blueprint-300 shrink-0" />
             <div>
-              <h4 className="text-white font-bold text-sm mb-1">
-                Lifetime Access
-              </h4>
+              <h4 className="text-white font-bold text-sm mb-1">Lifetime Access</h4>
               <p className="text-gray-400 text-xs leading-relaxed">
-                These files are now stored in your account library for future
-                access.
+                These files are now stored in your account library for future access.
               </p>
             </div>
           </div>
@@ -121,5 +125,18 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// 2. The Default Export wrapped in Suspense
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-blueprint-900 flex justify-center items-center">
+        <Loader2 className="animate-spin text-blueprint-500" size={48} />
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
