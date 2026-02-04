@@ -31,7 +31,7 @@ export default function AddArticlePage() {
     formData.append("coverImage", coverImage);
 
     try {
-      const res = await fetch("http://localhost:8000/api/blogs/create", {
+      const res = await fetch("https://cad-envision-server.vercel.app/api/blogs/create", {
         method: "POST",
         body: formData,
       });
