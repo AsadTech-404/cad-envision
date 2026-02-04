@@ -12,24 +12,31 @@ const DrawingCard = ({ drawing, onQuickView, searchQuery = "" }) => {
   
   const isFree = price === 0;
   
-  // Helper function to highlight the searched text in the title
   const getHighlightedText = (text, highlight) => {
-    if (!highlight.trim()) return text;
-    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
-    return (
-      <span>
-        {parts.map((part, i) =>
-          part.toLowerCase() === highlight.toLowerCase() ? (
-            <mark key={i} className="bg-blueprint-500/30 text-blueprint-300 p-0 rounded">
-              {part}
-            </mark>
-          ) : (
-            part
-          )
-        )}
-      </span>
-    );
-  };
+  // 1. If no highlight or it's empty, just return the original text
+  if (!highlight || !highlight.trim()) return text;
+
+  // 2. ESCAPE special regex characters (like *, +, (, ), etc.)
+  // This prevents the app from crashing if someone searches for "Plan(A)"
+  const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  // 3. Split the text using the safe string
+  const parts = text.split(new RegExp(`(${escapedHighlight})`, "gi"));
+
+  return (
+    <span>
+      {parts.map((part, i) =>
+        part.toLowerCase() === highlight.toLowerCase() ? (
+          <mark key={i} className="bg-blueprint-500/30 text-blueprint-300 p-0 rounded">
+            {part}
+          </mark>
+        ) : (
+          part
+        )
+      )}
+    </span>
+  );
+};
 
   return (
     <div className="group bg-blueprint-700/50 border border-white/10 rounded-xl overflow-hidden hover:border-blueprint-500/50 transition-all duration-300 shadow-xl flex flex-col h-full">
