@@ -65,12 +65,11 @@ export default function Navbar() {
         <div className="flex items-center gap-5 relative">
           {/* Desktop Search */}
           <div className="relative hidden sm:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <Search onClick={handleSearch} className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              onClick={handleSearch}
               placeholder="Search drawings..."
               className="bg-blueprint-700 border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:border-blueprint-500 transition w-48 lg:w-64 text-white"
             />
