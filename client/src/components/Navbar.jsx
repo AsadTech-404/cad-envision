@@ -30,11 +30,10 @@ export default function Navbar() {
       
       {/* =======================
           TOP BAR 
-          - Left: Logo
-          - Right: About, Contact, Privacy
-          - Color: Matches Bottom Bar (blueprint-900)
+          - Hidden on Mobile (hidden md:block)
+          - Visible on Desktop
       ======================== */}
-      <div className="bg-blueprint-900 border-b border-white/10 w-full z-50">
+      <div className="hidden md:block bg-blueprint-900 border-b border-white/10 w-full z-50">
         <div className="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between">
           
           {/* Left Side: Logo */}
@@ -45,8 +44,8 @@ export default function Navbar() {
             CAD<span className="text-blueprint-500"> Envision</span>
           </Link>
 
-          {/* Right Side: Corporate Links (Hidden on Mobile to save space) */}
-          <div className="hidden md:flex gap-6 text-xs font-medium text-gray-400 uppercase tracking-widest">
+          {/* Right Side: Corporate Links */}
+          <div className="flex gap-6 text-xs font-medium text-gray-400 uppercase tracking-widest">
             <Link href="/about" className="hover:text-white transition">About Us</Link>
             <Link href="/contact" className="hover:text-white transition">Contact Us</Link>
             <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
@@ -57,13 +56,21 @@ export default function Navbar() {
 
       {/* =======================
           BOTTOM BAR 
-          - Left: Categories (HVAC, Plumbing...)
-          - Right: Search, Cart, Login
+          - Mobile: Shows Logo + Tools
+          - Desktop: Shows Categories + Tools
       ======================== */}
       <div className="bg-blueprint-900/90 backdrop-blur-md border-b border-white/10 w-full z-40">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           
-          {/* Left Side: Category Navigation (Hidden on Mobile/Tablet) */}
+          {/* 1. Mobile Logo (Visible ONLY on mobile when Top Bar is hidden) */}
+          <Link
+            href="/"
+            className="md:hidden text-lg font-bold tracking-tighter text-white"
+          >
+            CAD<span className="text-blueprint-500"> Envision</span>
+          </Link>
+
+          {/* 2. Desktop Categories (Hidden on Mobile/Tablet) */}
           <div className="hidden xl:flex items-center gap-5 text-[11px] font-bold text-gray-300 uppercase tracking-tight">
             <Link href="/drawings" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded">Drawings</Link>
             <Link href="/drawings?category=hvac" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded whitespace-nowrap">HVAC Design</Link>
@@ -73,16 +80,6 @@ export default function Navbar() {
             <Link href="/drawings?category=revit" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded whitespace-nowrap">Revit Families</Link>
             <Link href="/drawings?category=autocad" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded whitespace-nowrap">AutoCAD Blocks</Link>
             <Link href="/blog" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded">Blogs</Link>
-          </div>
-
-          {/* Mobile Title (Visible only when links are hidden) */}
-          <div className="xl:hidden">
-            <Link
-            href="/"
-            className="text-lg font-bold tracking-tighter text-white"
-          >
-            CAD<span className="text-blueprint-500"> Envision</span>
-          </Link>
           </div>
 
           {/* Right Side: Tools (Search, Cart, User) */}
@@ -158,7 +155,7 @@ export default function Navbar() {
       ======================== */}
       <div
         className={`
-        fixed inset-x-0 top-[104px] bg-blueprint-900 border-b border-white/10 transition-all duration-300 ease-in-out xl:hidden z-30
+        fixed inset-x-0 top-[64px] bg-blueprint-900 border-b border-white/10 transition-all duration-300 ease-in-out xl:hidden z-30
         ${isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"}
       `}
       >
@@ -175,7 +172,7 @@ export default function Navbar() {
           </div>
 
           <nav className="flex flex-col gap-3 text-sm font-bold text-gray-300 uppercase tracking-widest">
-             {/* Corporate Links (Only visible here on Mobile) */}
+             {/* Corporate Links (Visible here on Mobile) */}
              <div className="flex flex-col gap-3 border-b border-white/10 pb-4 mb-2">
                 <Link href="/about" onClick={toggleMenu} className="hover:text-white text-gray-400 text-xs">About Us</Link>
                 <Link href="/contact" onClick={toggleMenu} className="hover:text-white text-gray-400 text-xs">Contact Us</Link>
