@@ -26,30 +26,31 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 flex flex-col">
+    <nav className="fixed top-0 w-full z-50 flex flex-col shadow-xl">
       
       {/* =======================
           TOP BAR 
-          - Left: About, Contact, Privacy
-          - Right: Logo
+          - Left: Logo
+          - Right: About, Contact, Privacy
+          - Color: Matches Bottom Bar (blueprint-900)
       ======================== */}
-      <div className="bg-blueprint-950 border-b border-white/10 w-full z-50">
+      <div className="bg-blueprint-900 border-b border-white/10 w-full z-50">
         <div className="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between">
           
-          {/* Left Side: Corporate Links */}
-          <div className="flex gap-4 md:gap-6 text-[10px] md:text-xs font-medium text-gray-400 uppercase tracking-widest">
-            <Link href="/about" className="hover:text-white transition">About Us</Link>
-            <Link href="/contact" className="hover:text-white transition">Contact Us</Link>
-            <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
-          </div>
-
-          {/* Right Side: Logo */}
+          {/* Left Side: Logo */}
           <Link
             href="/"
             className="text-lg font-bold tracking-tighter text-white"
           >
             CAD<span className="text-blueprint-500"> Envision</span>
           </Link>
+
+          {/* Right Side: Corporate Links (Hidden on Mobile to save space) */}
+          <div className="hidden md:flex gap-6 text-xs font-medium text-gray-400 uppercase tracking-widest">
+            <Link href="/about" className="hover:text-white transition">About Us</Link>
+            <Link href="/contact" className="hover:text-white transition">Contact Us</Link>
+            <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
+          </div>
 
         </div>
       </div>
@@ -74,9 +75,14 @@ export default function Navbar() {
             <Link href="/blog" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded">Blogs</Link>
           </div>
 
-          {/* Mobile Title (Visible only when links are hidden to fill space) */}
-          <div className="xl:hidden text-gray-500 text-xs font-mono">
-            MENU
+          {/* Mobile Title (Visible only when links are hidden) */}
+          <div className="xl:hidden">
+            <Link
+            href="/"
+            className="text-lg font-bold tracking-tighter text-white"
+          >
+            CAD<span className="text-blueprint-500"> Envision</span>
+          </Link>
           </div>
 
           {/* Right Side: Tools (Search, Cart, User) */}
@@ -135,7 +141,7 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Mobile Menu Toggle (Visible on smaller screens) */}
+            {/* Mobile Menu Toggle */}
             <button
               className="xl:hidden text-gray-400 hover:text-white transition"
               onClick={toggleMenu}
@@ -157,6 +163,7 @@ export default function Navbar() {
       `}
       >
         <div className="px-6 py-6 flex flex-col gap-4">
+          
           {/* Mobile Search Input */}
           <div className="relative md:hidden mb-2">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
@@ -168,6 +175,14 @@ export default function Navbar() {
           </div>
 
           <nav className="flex flex-col gap-3 text-sm font-bold text-gray-300 uppercase tracking-widest">
+             {/* Corporate Links (Only visible here on Mobile) */}
+             <div className="flex flex-col gap-3 border-b border-white/10 pb-4 mb-2">
+                <Link href="/about" onClick={toggleMenu} className="hover:text-white text-gray-400 text-xs">About Us</Link>
+                <Link href="/contact" onClick={toggleMenu} className="hover:text-white text-gray-400 text-xs">Contact Us</Link>
+                <Link href="/privacy" onClick={toggleMenu} className="hover:text-white text-gray-400 text-xs">Privacy Policy</Link>
+             </div>
+
+            {/* Main Categories */}
             <Link href="/drawings" onClick={toggleMenu} className="hover:text-blueprint-400 border-b border-white/5 pb-2">Drawings</Link>
             <Link href="/drawings?category=hvac" onClick={toggleMenu} className="hover:text-blueprint-400 border-b border-white/5 pb-2">HVAC Design</Link>
             <Link href="/drawings?category=fire-protection" onClick={toggleMenu} className="hover:text-blueprint-400 border-b border-white/5 pb-2">Fire Protection</Link>
