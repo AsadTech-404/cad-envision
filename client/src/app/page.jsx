@@ -71,16 +71,7 @@ export default function Home() {
       {/* --- NOISE OVERLAY --- */}
       {/* This adds the subtle grainy texture across the entire background */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150"></div>
-      <div className="noise-overlay" />
-
-      {/* Background Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none sm:block" 
-        style={{ 
-          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-          backgroundSize: '40px 40px' 
-        }}
-      ></div>
+      <div className="noise-overlay"></div>
 
       {/* IMPORTANT: All content sections now need 'relative z-10' 
           to stay above the background effects. 
