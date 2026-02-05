@@ -22,20 +22,8 @@
     /* Force hide scrollbar globally if you never want it seen */
     overflow-x: hidden;
   }
-}
 
-/* Hide scrollbar for Chrome, Safari, Edge */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for Firefox */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Animated Noise Effect */
+  /* Animated Noise Effect */
   .noise-bg {
     position: fixed;
     top: -50%;
@@ -65,4 +53,15 @@
     90% { transform: translate(10%,5%) }
     100% { transform: translate(5%,0) }
   }
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
