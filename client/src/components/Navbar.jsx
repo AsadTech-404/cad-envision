@@ -71,7 +71,7 @@ export default function Navbar() {
           </Link>
 
           {/* 2. Desktop Categories (Hidden on Mobile/Tablet) */}
-          <div className="hidden xl:flex items-center gap-5 text-[11px] font-bold text-gray-300 uppercase tracking-tight">
+          <div className="hidden xl:flex items-center gap-5 text-sm font-medium text-gray-300 uppercase tracking-tight">
             <Link href="/drawings" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded">Drawings</Link>
             <Link href="/drawings?category=hvac" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded whitespace-nowrap">HVAC Design</Link>
             <Link href="/drawings?category=fire-protection" className="hover:text-blueprint-400 transition hover:bg-white/5 px-2 py-1 rounded whitespace-nowrap">Fire Protection</Link>
