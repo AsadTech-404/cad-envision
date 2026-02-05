@@ -67,6 +67,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-blueprint-900 pt-20 md:pt-32 relative overflow-hidden">
+      
+      {/* --- NOISE OVERLAY --- */}
+      {/* This adds the subtle grainy texture across the entire background */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150"></div>
+
       {/* Background Grid Pattern */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none sm:block" 
@@ -76,6 +81,9 @@ export default function Home() {
         }}
       ></div>
 
+      {/* IMPORTANT: All content sections now need 'relative z-10' 
+          to stay above the background effects. 
+      */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <span className="text-blueprint-500 font-mono text-[10px] md:text-sm tracking-widest uppercase mb-4 block">
           Precision CAD Assets
