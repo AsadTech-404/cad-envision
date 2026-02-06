@@ -18,7 +18,8 @@ export default function Navbar() {
 
   // handle search execution
   const handleSearch = (e) => {
-    if (e.key === "Enter" && searchQuery.trim()) {
+    e.preventDefault();
+    if (searchQuery.trim()) {
       router.push(`/drawings?search=${encodeURIComponent(searchQuery.trim())}`);
       setIsMenuOpen(false);
       setSearchQuery("");
@@ -86,17 +87,18 @@ export default function Navbar() {
           <div className="flex items-center gap-4 relative">
             
             {/* Desktop Search */}
-            <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-                placeholder="Search..."
-                className="bg-blueprint-800 border border-white/10 rounded-full py-1.5 pl-9 pr-4 text-xs focus:outline-none focus:border-blueprint-500 transition w-32 lg:w-48 text-white"
-              />
-            </div>
+          <form onSubmit={handleSearch} className="relative hidden sm:block">
+            <button type="submit" className="cursor-pointer">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"/>
+            </button>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search drawings..."
+              className="bg-blueprint-700 border border-white/10 rounded-full py-1.5 pl-10 pr-4 text-sm focus:outline-none focus:border-blueprint-500 transition w-48 lg:w-64 text-white"
+            />
+          </form>
 
             {/* Cart Icon */}
             <Link href="/cart" className="relative group p-2">
@@ -162,14 +164,18 @@ export default function Navbar() {
         <div className="px-6 py-6 flex flex-col gap-4">
           
           {/* Mobile Search Input */}
-          <div className="relative md:hidden mb-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+          <form onSubmit={handleSearch} className="relative md:hidden mb-2">
+            <button type="submit" className="cursor-pointer">
+             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"/>
+            </button>
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search drawings..."
               className="w-full bg-blueprint-800 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white"
             />
-          </div>
+          </form>
 
           <nav className="flex flex-col gap-3 text-sm font-bold text-gray-300 uppercase tracking-widest">
              {/* Corporate Links (Visible here on Mobile) */}
