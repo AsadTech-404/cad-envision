@@ -84,7 +84,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Side: Tools (Search, Cart, User) */}
-          <div className="flex items-center gap-4 relative">
+          <div className="flex items-center gap-2 relative">
             
             {/* Desktop Search */}
           <form onSubmit={handleSearch} className="relative hidden sm:block">
