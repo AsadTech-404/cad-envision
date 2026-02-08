@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import Link from 'next/link';
 import DrawingCard from '../components/DrawingCard';
 import QuickViewModal from '../components/QuickViewModal';
@@ -9,10 +9,103 @@ export default function Home() {
   const [featuredDrawings, setFeaturedDrawings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-
   // Modal State
   const [selectedDrawing, setSelectedDrawing] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // --- ANIMATION LOGIC ---
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    let animationFrameId;
+    const mouse = { x: 0, y: 0 };
+    const cursorGlow = { x: 0, y: 0 };
+
+    const resize = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+
+    const handleMouseMove = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", handleMouseMove);
+    resize();
+
+    class Glow {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.radius = 300 + Math.random() * 300;
+        this.dx = (Math.random() - 0.5) * 0.4;
+        this.dy = (Math.random() - 0.5) * 0.4;
+        // Blueprint Theme Colors: Soft Blues
+        this.color = Math.random() > 0.5 
+          ? "rgba(0, 95, 184, 0.15)" // blueprint-500
+          : "rgba(74, 144, 226, 0.1)"; // blueprint-300
+      }
+
+      draw() {
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, "transparent");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      move() {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x < -this.radius) this.x = w + this.radius;
+        if (this.x > w + this.radius) this.x = -this.radius;
+        if (this.y < -this.radius) this.y = h + this.radius;
+        if (this.y > h + this.radius) this.y = -this.radius;
+      }
+    }
+
+    const glows = Array.from({ length: 6 }, () => new Glow());
+
+    const drawCursorLight = () => {
+      cursorGlow.x += (mouse.x - cursorGlow.x) * 0.1;
+      cursorGlow.y += (mouse.y - cursorGlow.y) * 0.1;
+
+      const radius = 450;
+      const gradient = ctx.createRadialGradient(cursorGlow.x, cursorGlow.y, 0, cursorGlow.x, cursorGlow.y, radius);
+      gradient.addColorStop(0, "rgba(74, 144, 226, 0.15)"); 
+      gradient.addColorStop(0.5, "rgba(74, 144, 226, 0.05)");
+      gradient.addColorStop(1, "transparent");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(cursorGlow.x, cursorGlow.y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, w, h);
+      glows.forEach(g => { g.move(); g.draw(); });
+      drawCursorLight();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   // --- FETCH DATA FROM API ---
   useEffect(() => {
@@ -68,14 +161,25 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-blueprint-900 pt-20 md:pt-32 relative overflow-hidden">
       
-      {/* --- NOISE OVERLAY --- */}
-      {/* This adds the subtle grainy texture across the entire background */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150"></div>
-      <div className="noise-overlay"></div>
+      {/* 1. Animated Background Canvas */}
+      <canvas 
+        ref={canvasRef} 
+        className="fixed inset-0 pointer-events-none" 
+        style={{ zIndex: 0 }}
+      />
 
-      {/* IMPORTANT: All content sections now need 'relative z-10' 
-          to stay above the background effects. 
-      */}
+      {/* 2. Static Blueprint Grid (Placed above canvas but behind content) */}
+      <div 
+        className="fixed inset-0 opacity-[0.07] pointer-events-none" 
+        style={{ 
+          zIndex: 1,
+          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
+          backgroundSize: '40px 40px' 
+        }}
+      ></div>
+
+      {/* 3. Soft Gradient Overlay to blend them */}
+      <div className="fixed inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-blueprint-900/80" style={{ zIndex: 2 }}></div>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <span className="text-blueprint-500 font-mono text-[10px] md:text-sm tracking-widest uppercase mb-4 block">
           Precision CAD Assets
