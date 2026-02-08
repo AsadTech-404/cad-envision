@@ -168,15 +168,7 @@ export default function Home() {
         style={{ zIndex: 0 }}
       />
 
-      {/* 2. Static Blueprint Grid (Placed above canvas but behind content) */}
-      <div 
-        className="fixed inset-0 opacity-[0.07] pointer-events-none" 
-        style={{ 
-          zIndex: 1,
-          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-          backgroundSize: '40px 40px' 
-        }}
-      ></div>
+    
 
       {/* 3. Soft Gradient Overlay to blend them */}
       <div className="fixed inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-blueprint-900/80" style={{ zIndex: 2 }}></div>
