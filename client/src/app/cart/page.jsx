@@ -33,7 +33,7 @@ export default function CartPage() {
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="bg-blueprint-700/50 border border-white/10 p-5 rounded-xl flex items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
@@ -52,7 +52,7 @@ export default function CartPage() {
                       ${(Number(item.price) || 0).toFixed(2)}
                     </span>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item._id)}
                       className="text-gray-600 hover:text-red-500 transition-colors"
                     >
                       <Trash2 size={18} />
