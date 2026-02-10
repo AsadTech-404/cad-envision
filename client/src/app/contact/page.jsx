@@ -75,7 +75,7 @@ export default function ContactPage() {
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] font-mono text-gray-500 uppercase">Direct Email</span>
-                <a href="mailto:scadenvision@gmail.com?subject=Contact%20Request" className="text-sm font-medium cursor-pointer">scadenvision@gmail.com</a>
+                <a href="mailto:scadenvision@gmail.com" className="text-sm font-medium cursor-pointer">scadenvision@gmail.com</a>
               </div>
             </div>
 
