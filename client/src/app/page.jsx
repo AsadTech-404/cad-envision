@@ -349,7 +349,7 @@ export default function Home() {
           Join 5,000+ professionals downloading premium CAD assets every month. No subscriptions, just quality.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-           <Link href="/register" className="bg-white text-blueprint-500 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">Create Free Account</Link>
+           <Link href="/login" className="bg-white text-blueprint-500 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">Create Free Account</Link>
            <Link href="/contact" className="bg-blueprint-900/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition">Contact Sales</Link>
         </div>
       </div>
