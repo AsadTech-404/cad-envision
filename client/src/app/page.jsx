@@ -350,7 +350,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
            <Link href="/login" className="bg-white text-blueprint-500 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">Create Free Account</Link>
-           <Link href="/contact" className="bg-blueprint-900/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition">Contact Sales</Link>
+           <Link href="/contact" className="bg-blueprint-900/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition">Contact</Link>
         </div>
       </div>
     </section>
