@@ -171,7 +171,7 @@ export default function Home() {
     
 
       {/* 3. Soft Gradient Overlay to blend them */}
-      <div className="fixed inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-blueprint-900/80" style={{ zIndex: 2 }}></div>
+      <div className="fixed inset-0 pointer-events-none bg-linear-to-b from-transparent via-transparent to-blueprint-900/80" style={{ zIndex: 2 }}></div>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <span className="text-blueprint-500 font-mono text-[10px] md:text-sm tracking-widest uppercase mb-4 block">
           Precision CAD Assets
@@ -243,6 +243,124 @@ export default function Home() {
            </div>
          )}
       </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
+  <h2 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
+    Built for <span className="text-blueprint-500">Professionals</span>
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {[
+      { title: "Architects", desc: "High-quality plans ready for real projects." },
+      { title: "MEP Engineers", desc: "HVAC, plumbing & fire protection drawings." },
+      { title: "Students", desc: "Learn from industry-standard CAD files." },
+    ].map((item) => (
+      <div
+        key={item.title}
+        className="bg-blueprint-700/40 border border-white/10 rounded-xl p-6 hover:border-blueprint-500 transition"
+      >
+        <h3 className="text-white font-bold mb-2">{item.title}</h3>
+        <p className="text-gray-400 text-sm">{item.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h2 className="text-3xl font-bold text-white mb-6">
+        Why Choose <span className="text-blueprint-500">CAD Envision</span>
+      </h2>
+      <ul className="space-y-4 text-gray-400 text-sm">
+        <li>✔ Production-ready CAD drawings</li>
+        <li>✔ Created by real engineers</li>
+        <li>✔ Instant digital delivery</li>
+        <li>✔ Clean layers & standards</li>
+      </ul>
+    </div>
+
+    <div className="bg-blueprint-700/30 border border-white/10 rounded-2xl p-8">
+      <p className="font-mono text-xs text-blueprint-300 uppercase">
+        Designed for speed & accuracy
+      </p>
+      <p className="text-gray-300 mt-4">
+        Stop wasting hours drafting from scratch.  
+        Start with reliable, optimized CAD assets.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
+  <h2 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
+    How It Works
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+    {["Browse", "Preview", "Purchase", "Download"].map((step, i) => (
+      <div
+        key={step}
+        className="bg-blueprint-700/40 border border-white/10 rounded-xl p-6"
+      >
+        <span className="text-blueprint-500 font-mono text-sm">
+          0{i + 1}
+        </span>
+        <h3 className="text-white font-bold mt-2">{step}</h3>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
+  <h2 className="text-2xl md:text-3xl font-bold text-white mb-10 text-center">
+    Compatible With
+  </h2>
+
+  <div className="flex flex-wrap justify-center gap-4">
+    {["AutoCAD", "Revit", "BIM", "DWG", "DXF", "RVT"].map((tool) => (
+      <span
+        key={tool}
+        className="px-5 py-2 rounded-full bg-blueprint-700 border border-white/10 text-sm text-gray-300 font-mono"
+      >
+        {tool}
+      </span>
+    ))}
+  </div>
+</section>
+
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    {[
+      { value: "500+", label: "CAD Assets" },
+      { value: "100+", label: "Happy Clients" },
+      { value: "Instant", label: "Delivery" },
+    ].map((stat) => (
+      <div key={stat.label}>
+        <h3 className="text-4xl font-black text-blueprint-500">
+          {stat.value}
+        </h3>
+        <p className="text-gray-400 text-sm mt-2">{stat.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-32 text-center relative z-10">
+  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+    Start Building Faster Today
+  </h2>
+  <p className="text-gray-400 max-w-xl mx-auto mb-10">
+    Download professional CAD drawings and focus on what matters — execution.
+  </p>
+
+  <Link
+    href="/drawings"
+    className="inline-block px-10 py-4 bg-blueprint-500 text-white rounded-lg font-black uppercase tracking-widest hover:bg-blueprint-300 transition"
+  >
+    Explore Drawings
+  </Link>
+</section>
 
       <QuickViewModal 
         isOpen={isModalOpen} 
