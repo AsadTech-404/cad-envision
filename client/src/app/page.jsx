@@ -329,23 +329,6 @@ export default function Home() {
   </div>
 </section>
 
-<section className="max-w-7xl mx-auto px-4 sm:px-6 py-24 relative z-10">
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-    {[
-      { value: "500+", label: "CAD Assets" },
-      { value: "100+", label: "Happy Clients" },
-      { value: "Instant", label: "Delivery" },
-    ].map((stat) => (
-      <div key={stat.label}>
-        <h3 className="text-4xl font-black text-blueprint-500">
-          {stat.value}
-        </h3>
-        <p className="text-gray-400 text-sm mt-2">{stat.label}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
 <section className="max-w-7xl mx-auto px-4 sm:px-6 py-32 text-center relative z-10">
   <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
     Start Building Faster Today
