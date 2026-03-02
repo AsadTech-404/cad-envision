@@ -194,9 +194,9 @@ export default function Home() {
         style={{ zIndex: 2 }}
       ></div>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        <span className="text-blueprint-500 font-mono text-[10px] md:text-sm tracking-widest uppercase mb-4 block">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
           Precision CAD Assets
-        </span>
+        </div>
 
         <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
           Professional AutoCAD <br className="hidden md:block" /> Designs for
