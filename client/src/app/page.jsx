@@ -247,7 +247,7 @@ export default function Home() {
       </section>
 
       {/* --- NEW SECTION 1: TRUST STATS --- */}
-    <section class="py-20 bg-slate-950 border-y border-slate-800">
+    <section class="py-20 bg-zinc-950 border-y border-slate-800">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="text-center">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
