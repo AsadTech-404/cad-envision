@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import DrawingCard from "../components/DrawingCard";
 import QuickViewModal from "../components/QuickViewModal";
-import { Loader2 } from "lucide-react"; // Assuming you have lucide-react installed
+import { Loader2, Layers, Edit3, MousePointerClick, CheckCircle } from "lucide-react"; // Assuming you have lucide-react installed
 
 export default function Home() {
   const [featuredDrawings, setFeaturedDrawings] = useState([]);
@@ -251,34 +251,35 @@ export default function Home() {
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="text-center">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                    <i data-lucide="layers" class="text-blue-400 w-6 h-6"></i>
+                    <Layers class="text-blue-400 w-6 h-6"/>
                 </div>
                 <h4 class="font-bold mb-2">Layered Assets</h4>
                 <p class="text-xs text-slate-500 uppercase tracking-widest">Industry Standard</p>
             </div>
             <div class="text-center">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                    <i data-lucide="edit-3" class="text-blue-400 w-6 h-6"></i>
+                    <Edit3 class="text-blue-400 w-6 h-6" />
                 </div>
                 <h4 class="font-bold mb-2">Fully Editable</h4>
                 <p class="text-xs text-slate-500 uppercase tracking-widest">DWG / DXF Native</p>
             </div>
             <div class="text-center">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                    <i data-lucide="mouse-pointer-click" class="text-blue-400 w-6 h-6"></i>
+                    <MousePointerClick class="text-blue-400 w-6 h-6" />
                 </div>
                 <h4 class="font-bold mb-2">Instant Download</h4>
                 <p class="text-xs text-slate-500 uppercase tracking-widest">Zero Wait Time</p>
             </div>
             <div class="text-center">
                 <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-500/30">
-                    <i data-lucide="check-circle" class="text-blue-400 w-6 h-6"></i>
+                    <CheckCircle  class="text-blue-400 w-6 h-6" />
                 </div>
                 <h4 class="font-bold mb-2">Cross-Compatible</h4>
                 <p class="text-xs text-slate-500 uppercase tracking-widest">AutoCAD & Others</p>
             </div>
         </div>
     </section>
+      
     {/* --- NEW SECTION 2: THE PRECISION DIFFERENCE --- */}
     <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-32 relative z-10">
       <div className="flex flex-col md:flex-row items-center gap-16">
