@@ -161,7 +161,7 @@ export default function Home() {
 
       <Hero categories={categories} loading={loading} />
       
-      <TrustStats />
+      <TrustStats className="mt-10"/>
 
       <TechnicalLibrary categories={categories} loading={loading} />
 
