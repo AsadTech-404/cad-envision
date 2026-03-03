@@ -157,7 +157,7 @@ export default function Navbar() {
       ======================== */}
       <div
         className={`
-        fixed inset-x-0 top-[64px] bg-blueprint-900 border-b border-white/10 transition-all duration-300 ease-in-out xl:hidden z-30
+        fixed inset-x-0 top-16 bg-blueprint-900 border-b border-white/10 transition-all duration-300 ease-in-out xl:hidden z-30
         ${isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"}
       `}
       >
