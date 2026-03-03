@@ -10,7 +10,7 @@ const stats = [
 
 export default function TrustStats() {
   return (
-    <section className="relative z-10 py-20 bg-zinc-950 border-y border-slate-800">
+    <section className="relative z-10 py-20 bg-zinc-950 border-y border-slate-800 mt-12">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         {stats.map((stat, i) => (
           <div key={i} className="text-center">
